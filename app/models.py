@@ -12,12 +12,13 @@ class Preguntas(models.Model):
  
 class Opciones(models.Model):
     opcion_pregunta = models.CharField(max_length=200)
+    pregunta = models.ForeignKey(Preguntas, on_delete=models.CASCADE)
     def __str__(self):
     	return self.opcion_pregunta
 
 class Voto(models.Model):
-    id_opciones = models.IntegerField(max_length=200)
-    id_usuario = models.IntegerField(max_length=200)
+    id_opciones = models.IntegerField()
+    id_usuario = models.IntegerField()
 
 class Invitaciones(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
