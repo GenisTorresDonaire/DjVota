@@ -13,13 +13,65 @@ class Preguntas(models.Model):
 class Opciones(models.Model):
     opcion_pregunta = models.CharField(max_length=200)
     pregunta = models.ForeignKey(Preguntas, on_delete=models.CASCADE)
+    def creador(self):
+        return self.pregunta.creador_pregunta
     def __str__(self):
-    	return self.opcion_pregunta
-
-class Voto(models.Model):
-    id_opciones = models.IntegerField()
-    id_usuario = models.IntegerField()
+        return self.opcion_pregunta
+    def __unicode__(self):
+        return self.title
 
 class Invitaciones(models.Model):
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    pregunta = models.ForeignKey(Preguntas, on_delete=models.CASCADE)
+    pregunta = models.ForeignKey(Preguntas, on_delete=models.CASCADE)    
+
+class Voto(models.Model):
+    id_usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    id_opciones = models.ForeignKey(Opciones, on_delete=models.CASCADE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#def votos(self):
+#    votos = vot.objects.filter(opcion=self.id).count()
+#    return votos
+
+
+
+
+#enviada = models.BooleanField(default=False)
+#aceptada = models.BooleanField(default=False)
+#def __unicode__(self):
+#    return self.pregunta + " | " + self.usuario
+#def __str__(self):
+#    return self.__unicode__()
