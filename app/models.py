@@ -13,6 +13,9 @@ class Preguntas(models.Model):
 class Opciones(models.Model):
     opcion_pregunta = models.CharField(max_length=200)
     pregunta = models.ForeignKey(Preguntas, on_delete=models.CASCADE)
+    def votos(self):
+        votos = Voto.objects.filter(id_opciones=self.id).count()
+        return votos
     def creador(self):
         return self.pregunta.creador_pregunta
     def __str__(self):

@@ -22,7 +22,7 @@ class PreguntasAdmin(admin.ModelAdmin):
 
 
 class OpcionesAdmin(admin.ModelAdmin):
-	list_display = ('opcion_pregunta', 'pregunta', 'creador')
+	list_display = ('opcion_pregunta', 'pregunta', 'creador', 'votos')
 	readonly_fields = ('pregunta',)
 	def get_queryset(self, request):
 		qs = Opciones.objects.all()
