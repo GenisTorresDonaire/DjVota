@@ -1,9 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}" />
+
 {% if latest_question_list %}
-    <ul>
+    <ol>
     {% for preguntas in latest_question_list %}
      	<li><a href="{% url 'app:detail' preguntas.id %}">{{ preguntas.texto_pregunta }}</a></li>
     {% endfor %}
-    </ul>
+    </ol>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
