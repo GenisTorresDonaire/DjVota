@@ -1,13 +1,24 @@
+{% extends 'app/base.html' %}
+
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}" />
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}" />
 
-{% if latest_question_list %}
-    <ol>
-    {% for preguntas in latest_question_list %}
-     	<li><a href="{% url 'app:detail' preguntas.id %}">{{ preguntas.texto_pregunta }}</a></li>
-    {% endfor %}
-    </ol>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+	{% if latest_question_list %}
+	    <!-- <ol> -->
+	    	<div class="panel panel-primary">
+		      <div class="panel-heading">Consultas</div>
+		      <div class="panel-body">
+		      	{% for preguntas in latest_question_list %}
+			     	<dt><a class="list-group-item" href="{% url 'app:detail' preguntas.id %}">{{ preguntas.texto_pregunta }}</a></li>
+			    {% endfor %}
+		      </div>
+		    </div>
+	    
+	    <!-- </ol>-->
+	{% else %}
+	    <p>No polls are available.</p>
+	{% endif %}
+
+{% endblock %}
