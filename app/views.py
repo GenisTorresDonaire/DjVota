@@ -38,10 +38,12 @@ def vote(request, question_id):
     else:
         #seleccionOpcion.votes += 1
         v = Voto()
+        #v.id_usuario = request.user
         v.id_opciones = seleccionOpcion
-
         v.save()
+
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('app:results', args=(preguntas.id,)))
+

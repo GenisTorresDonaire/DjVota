@@ -16,10 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import include, url
 from django.urls import include, path
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
+    
+    # Version anterior a la 5.5 
     #url(r'^app/', include('app.urls')),
     #url(r'^admin/', admin.site.urls),
+
+    # En la version actual es con path..
     path('app/', include('app.urls')),
     path('admin/', admin.site.urls),
+    path('login/', auth_views.login, name='login'),
+    path('logout/', auth_views.logout, name='logout'),
+
+    # LOGIN LOGOUT
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('change-password/', auth_views.PasswordChangeView.as_view())
 ]
+
+
