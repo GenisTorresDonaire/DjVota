@@ -28,7 +28,8 @@ class Invitaciones(models.Model):
     pregunta = models.ForeignKey(Preguntas, on_delete=models.CASCADE)    
 
 class Voto(models.Model):
-    id_usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=None, blank=True, null=True)
+    #id_usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=None, blank=True, null=True)
+    id_usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     id_opciones = models.ForeignKey(Opciones, on_delete=models.CASCADE)
 
 

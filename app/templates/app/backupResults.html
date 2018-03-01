@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+
+<h1>{{ preguntas.texto_pregunta }}</h1>
+
+<div class="row">
+	<ul>
+	{% for opcion in preguntas.opciones_set.all %}
+	    <p>{{ opcion.opcion_pregunta }} -- {{ opcion.votos }} vote{{ opcion.votos|pluralize }}</>
+	{% endfor %}
+	</ul>
+
+<a href="{% url 'app:detail' preguntas.id %}">Vote again?</a>
+
+</div>

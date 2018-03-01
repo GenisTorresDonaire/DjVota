@@ -38,7 +38,7 @@ def vote(request, question_id):
     else:
         #seleccionOpcion.votes += 1
         v = Voto()
-        #v.id_usuario = request.user
+        v.id_usuario = request.user
         v.id_opciones = seleccionOpcion
         v.save()
 

@@ -1,9 +1,21 @@
-<h1>{{ preguntas.texto_pregunta }}</h1>
+{% extends 'app/base.html' %}
 
-<ul>
-{% for opcion in preguntas.opciones_set.all %}
-    <li>{{ opcion.opcion_pregunta }} -- {{ opcion.votos }} vote{{ opcion.votos|pluralize }}</li>
-{% endfor %}
-</ul>
+{% load static %}
 
-<a href="{% url 'app:detail' preguntas.id %}">Vote again?</a>
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}" />
+	
+	<h1 style="color: white">{{ preguntas.texto_pregunta }}</h1>
+
+	<div class="panel panel-primary">
+      <div class="panel-heading">Resultados</div>
+      <div class="panel-body">
+      	{% for opcion in preguntas.opciones_set.all %}
+	    	<p>{{ opcion.opcion_pregunta }} --> {{ opcion.votos }} vote{{ opcion.votos|pluralize }}</>
+		{% endfor %}
+		<hr>
+		<a href="{% url 'app:detail' preguntas.id %}">Vote again?</a>
+      </div>
+    </div>
+
+{% endblock %}

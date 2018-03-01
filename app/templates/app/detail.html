@@ -3,20 +3,26 @@
 {% load static %}
 
 {% block content %}
+	<link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}" />
 	
+	<h1 style="color: white">{{ preguntas.texto_pregunta }}</h1>
 
-	<h1 class="subtitulo">{{ preguntas.texto_pregunta }}</h1>
-	
-	{% if error_message %}
-		<p><strong>{{ error_message }}</strong></p>
-	{% endif %}
-	<form action="{% url 'app:vote' preguntas.id %}" method="post">
-		{% csrf_token %}
-		{% for opcion in preguntas.opciones_set.all %}
-	    	<input type="radio" name="opcion" id="opcion{{ forloop.counter }}" value="{{ opcion.id }}" />
-	    	<label for="opcion{{ forloop.counter }}">{{ opcion.opcion_pregunta }}</label><br />
-		{% endfor %}
-		<input class="btn btn-primary" type="submit" value="Vote" />
-	</form>
+	<div class="panel panel-primary">
+      <div class="panel-heading">Opciones</div>
+      <div class="panel-body">
+	      
+      	{% if error_message %}
+			<p><strong>{{ error_message }}</strong></p>
+		{% endif %}
+		<form action="{% url 'app:vote' preguntas.id %}" method="post">
+			{% csrf_token %}
+			{% for opcion in preguntas.opciones_set.all %}
+		    	<input type="radio" name="opcion" id="opcion{{ forloop.counter }}" value="{{ opcion.id }}" />
+		    	<label style="color: black" for="opcion{{ forloop.counter }}">{{ opcion.opcion_pregunta }}</label><br />
+			{% endfor %}
+			<input class="btn btn-primary" type="submit" value="Vote" />
+		</form>
+      </div>
+    </div>
 
 {% endblock %}
